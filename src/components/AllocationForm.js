@@ -58,16 +58,17 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
-                    {currency.symbol}
+                  <div style={{ marginLeft: '2rem'}}>
+                    <span>{currency.symbol}
                     <input
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
+                        style={{ size: 10}}
                         onChange={(event) => setCost(event.target.value)}>
-                        </input>
-
+                        </input></span>
+                        </div>
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
                     </button>

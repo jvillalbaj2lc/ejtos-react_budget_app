@@ -89,7 +89,11 @@ export const AppReducer = (state, action) => {
 
         case 'CHG_CURRENCY':
             action.type = "DONE";
-            state.currency = action.payload;
+            let newCurrency = state.availableCurrencies.find((item) => item.title === action.payload);
+            console.log(newCurrency);
+            if (newCurrency) {
+                state.currency = newCurrency;
+            }
             return {
                 ...state
             }
@@ -109,12 +113,12 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
     ],
-    currency: { symbol: "£", title: " Pound" },
+    currency: { symbol: "£", title: "Pound" },
     availableCurrencies: [
-        { symbol: "$", title: " Dollar" },
-        { symbol: "£", title: " Pound" },
-        { symbol: "€", title: " Euro" },
-        { symbol: "₹", title: " Ruppee" }
+        { symbol: "$", title: "Dollar" },
+        { symbol: "£", title: "Pound" },
+        { symbol: "€", title: "Euro" },
+        { symbol: "₹", title: "Ruppee" }
     ]
 };
 
@@ -142,7 +146,8 @@ export const AppProvider = (props) => {
                 budget: state.budget,
                 remaining: remaining,
                 dispatch,
-                currency: state.currency
+                currency: state.currency,
+                availableCurrencies: state.availableCurrencies,
             }}
         >
             {props.children}
